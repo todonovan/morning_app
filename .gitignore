@@ -242,3 +242,4 @@ ModelManifest.xml
 .fake/
 /WeatherDataService/packages.config
 /MorningApp/App.config
+/WeatherDataService/App.config
