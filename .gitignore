@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /WeatherDataService/packages.config
+/MorningApp/App.config
