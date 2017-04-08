@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MorningApp", "MorningApp\MorningApp.csproj", "{3D34C62B-D78E-49FF-9E52-C5B39160D654}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherDataService", "WeatherDataService\WeatherDataService.csproj", "{45D0922B-0BBC-46A2-9B19-E89B5A39F02B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MorningApp.Tests", "MorningApp.Tests\MorningApp.Tests.csproj", "{F3C8F95D-C576-4CBA-8F07-EDEDED7420CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3D34C62B-D78E-49FF-9E52-C5B39160D654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D34C62B-D78E-49FF-9E52-C5B39160D654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D34C62B-D78E-49FF-9E52-C5B39160D654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45D0922B-0BBC-46A2-9B19-E89B5A39F02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45D0922B-0BBC-46A2-9B19-E89B5A39F02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45D0922B-0BBC-46A2-9B19-E89B5A39F02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45D0922B-0BBC-46A2-9B19-E89B5A39F02B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C8F95D-C576-4CBA-8F07-EDEDED7420CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C8F95D-C576-4CBA-8F07-EDEDED7420CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C8F95D-C576-4CBA-8F07-EDEDED7420CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C8F95D-C576-4CBA-8F07-EDEDED7420CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

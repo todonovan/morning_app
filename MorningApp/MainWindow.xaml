@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MorningApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Good Morning!" Height="600" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:WeatherViewModel}">
+            <local:WeatherView />
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
