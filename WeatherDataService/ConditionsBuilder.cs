@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeatherDataService.Models;
+﻿using WeatherDataService.Models;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherDataService
 {
@@ -38,10 +34,13 @@ namespace WeatherDataService
     /// </summary>
     public static class ConditionsBuilder
     {
-        public static Conditions Build(ParsedWeatherAPIWrapper data)
+        public static Conditions Build(string rawJson)
         {
+            JObject json = JObject.Parse(rawJson);
             Conditions currentConditions = new Conditions();
-            string weatherPhrase = data.Data["weather"];
+
+            string weatherPhrase = (string)json["current_observation"]["weather"];
+
             currentConditions.CloudCover = ParseCloudCover(weatherPhrase);
             if (currentConditions.CloudCover == CloudCover.Precipitating)
             {
@@ -59,10 +58,10 @@ namespace WeatherDataService
                 currentConditions.PrecipType = PrecipType.None;
             }
 
-            currentConditions.Temperature = double.Parse(data.Data["temp_f"]);
-            currentConditions.FeelsLikeTemp = double.Parse(data.Data["feelslike_f"]);
-            currentConditions.RelativeHumidityPercent = int.Parse(data.Data["relative_humidity"].Substring(0, 2));
-            currentConditions.WindMPH = double.Parse(data.Data["wind_mph"]);
+            currentConditions.Temperature = (double)json["current_observation"]["temp_f"];
+            currentConditions.FeelsLikeTemp = (double)json["current_observation"]["feelslike_f"];
+            currentConditions.RelativeHumidity = (string)json["current_observation"]["relative_humidity"];
+            currentConditions.WindMPH = (double)json["current_observation"]["wind_mph"];
 
             return currentConditions;
         }

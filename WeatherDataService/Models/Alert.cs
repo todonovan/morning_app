@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WeatherDataService.Models
 {
-    public class Alerts
+    public class Alert
     {
         public WarningType Type { get; set; }
         public DateTime Date { get; set; }

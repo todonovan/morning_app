@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeatherDataService.Models;
+﻿using WeatherDataService.Models;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherDataService
 {
     public static class ForecastBuilder
     {
-        public static Forecast Build(ParsedWeatherAPIWrapper data)
+        public static Forecast Build(string rawJson)
         {
+            JObject json = JObject.Parse(rawJson);
+            JObject forecastDay = (JObject)json["forecast"]["simpleforecast"]["forecastday"][0];
             Forecast forecast = new Forecast();
-            forecast.Message = data.Data["forecast"];
-            forecast.HighTemp = int.Parse(data.Data["high"]);
-            forecast.LowTemp = int.Parse(data.Data["low"]);
+
+            forecast.Message = (string)forecastDay["conditions"];
+            forecast.HighTemp = (int)forecastDay["high"]["fahrenheit"];
+            forecast.LowTemp = (int)forecastDay["low"]["fahrenheit"];
+
             return forecast;
         }
     }

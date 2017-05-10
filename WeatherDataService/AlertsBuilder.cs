@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeatherDataService.Exceptions;
 using WeatherDataService.Models;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherDataService
 {
@@ -78,22 +75,30 @@ namespace WeatherDataService
             ["N"] = WarningSignificance.Synopsis
         };
 
-        public static Alerts Build(ParsedWeatherAPIWrapper data)
+        public static List<Alert> Build(string rawJson)
         {
-            Alerts alertsObject = new Alerts();
-            alertsObject.Type = warningTypeMapper[data.Data["type"]];
+            List<Alert> alerts = new List<Alert>();
+            JObject json = JObject.Parse(rawJson);
 
-            DateTimeOffset alertOffset = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(data.Data["date_epoch"]));
-            alertsObject.Date = alertOffset.UtcDateTime.ToLocalTime();
+            JArray alertsArray = (JArray)json["alerts"];
 
-            DateTimeOffset expiresOffset = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(data.Data["expires_epoch"]));
-            alertsObject.Expires = expiresOffset.UtcDateTime.ToLocalTime();
+            foreach (var a in alertsArray)
+            {
+                Alert alert = new Alert();
+                alert.Type = warningTypeMapper[(string)a["type"]];
+                alert.Message = (string)a["message"];
+                alert.Significance = significanceMapper[(string)a["significance"]];
 
-            alertsObject.Message = data.Data["message"];
+                DateTimeOffset alertOffset = DateTimeOffset.FromUnixTimeMilliseconds((long)a["date_epoch"]);
+                alert.Date = alertOffset.UtcDateTime.ToLocalTime();
 
-            alertsObject.Significance = significanceMapper[data.Data["significance"]];
+                DateTimeOffset expiresOffset = DateTimeOffset.FromUnixTimeMilliseconds((long)a["expires_epoch"]);
+                alert.Expires = expiresOffset.UtcDateTime.ToLocalTime();
 
-            return alertsObject;
+                alerts.Add(alert);
+            }
+
+            return alerts;
         }
     }
 }
