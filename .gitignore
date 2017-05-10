@@ -243,3 +243,5 @@ ModelManifest.xml
 /WeatherDataService/packages.config
 /MorningApp/App.config
 /WeatherDataService/App.config
+*.config
+/BusDataService/App.config
