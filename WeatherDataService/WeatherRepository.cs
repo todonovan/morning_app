@@ -23,7 +23,7 @@ namespace WeatherDataService
 
         public async Task ForceUpdateAllModels()
         {
-            foreach (string s in new List<String> { "alerts", "conditions", "forecast" })
+            foreach (string s in new string[] { "alerts", "conditions", "forecast" })
             {
                 await UpdateModel(s);
             }

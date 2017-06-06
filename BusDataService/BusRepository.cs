@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusDataService
 {
-    class BusRepository
+    public class BusRepository
     {
     }
 }
